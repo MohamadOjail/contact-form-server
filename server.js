@@ -12,10 +12,12 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 
-const server = https.createServer({
-    key: fs.readFile(path.parse('/etc/letsencrypt/live/contact.ojail.online/privkey.pem')),
-    cert: fs.readFile(path.parse('/etc/letsencrypt/live/contact.ojail.online/fullchain.pem'))
-}, app);
+const credentials = {
+    key: fs.readFileSync('/etc/letsencrypt/live/contact.ojail.online/privkey.pem', 'utf8'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/contact.ojail.online/fullchain.pem', 'utf8')
+};
+
+const server = https.createServer(credentials, app);
 
 // start listening
 server.listen(port, () => {
