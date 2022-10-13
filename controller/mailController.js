@@ -11,6 +11,11 @@ const response = {
 }
 
 const sendMail = async (req, res) => {
+    const incoming = {
+        msg: 'New Contact request',
+        Request: req
+    }
+    console.log(incoming);
 
     const { contact_ok, confirm_ok } = await emailParties(req);
 
