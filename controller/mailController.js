@@ -15,6 +15,7 @@ const sendMail = async (req, res) => {
         res.status(406).send({
             error_message: 'email not supplied'
         })
+        return
     }
     const incoming = {
         msg: 'New Contact request',
