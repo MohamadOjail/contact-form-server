@@ -12,8 +12,12 @@ const response = {
 
 const sendMail = async (req, res) => {
 
-    console.log('Request ############', req);
-    return
+    if (req.body.email === null | req.body.email === '') {
+        res.status(406).send({
+            'error message': 'email not supplied'
+        })
+        return
+    }
 
     const incoming = {
         msg: 'New Contact request',
