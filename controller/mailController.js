@@ -13,7 +13,7 @@ const response = {
 const sendMail = async (req, res) => {
 
     if (req.body.email === null | req.body.email === '') {
-        res.status(406).send({
+        res.status(406).json({
             'error message': 'email not supplied'
         })
         return
