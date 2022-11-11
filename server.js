@@ -2,17 +2,26 @@ require("dotenv").config();
 const express = require("express");
 const appRouter = require('./routes/appRoutes');
 const mailRouter = require('./routes/mailRoutes')
+const fs = require('fs');
+const https = require('https');
 
 // create the express app
 const app = express();
-const port = 4000;
+const port = 443;
 
-app.use(express.json());
+const credentials = {
+    key: fs.readFileSync('/etc/letsencrypt/live/ojail.se/privkey.pem', 'utf8'),
+    cert: fs.readFileSync('/etc/letsencrypt/live/ojail.se/fullchain.pem', 'utf8')
+};
+
+const server = https.createServer(credentials, app);
 
 // start listening
-app.listen(port, () => {
+server.listen(port, () => {
     console.log('Listening on:', `http://localhost:${port}`);
 });
+
+app.use(express.json());
 
 // set cors
 app.use((req, res, next) => {
