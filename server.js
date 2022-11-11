@@ -34,19 +34,19 @@ app.use((req, res, next) => {
 });
 
 // manage http requests to the API
-app.get('/', (req, res) => {
+app.get('/info', (req, res) => {
     res.status(200).json({
         Server_Test: {
             Method: 'GET',
-            Request_URL: 'https://contact.ojail.online/api/app/test'
+            Request_URL: 'https://ojail.se/api/app/test'
         },
         Server_Status: {
             Method: 'GET',
-            Request_URL: 'https://contact.ojail.online/api/app/info'
+            Request_URL: 'https://ojail.se/api/app/info'
         },
         Contact_Function: {
             Method: 'POST',
-            Request_URL: 'https://contact.ojail.online/api/server/contact',
+            Request_URL: 'https://ojail.se/api/server/contact',
             Request_Body_example: {
                 "name": "sender name",
                 "message": "this is a message!",
